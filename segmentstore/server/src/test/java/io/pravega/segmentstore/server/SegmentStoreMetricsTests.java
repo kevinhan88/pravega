@@ -9,6 +9,7 @@
  */
 package io.pravega.segmentstore.server;
 
+import io.micrometer.core.instrument.Metrics;
 import io.pravega.segmentstore.storage.cache.CacheState;
 import io.pravega.shared.MetricsNames;
 import io.pravega.shared.metrics.MetricRegistryUtils;
@@ -168,9 +169,12 @@ public class SegmentStoreMetricsTests {
         int managerIterationDuration = 1;
 
         int containerId = new Random().nextInt(Integer.MAX_VALUE);
+        Metrics.globalRegistry.clear();
+
         @Cleanup
         SegmentStoreMetrics.CacheManager cache = new SegmentStoreMetrics.CacheManager();
         cache.report(new CacheState(storedBytes, usedBytes, 0, allocatedBytes, storedBytes), generationSpread, managerIterationDuration);
+
 
         assertEquals(storedBytes, (int) MetricRegistryUtils.getGauge(MetricsNames.CACHE_STORED_SIZE_BYTES).value());
         assertEquals(usedBytes, (int) MetricRegistryUtils.getGauge(MetricsNames.CACHE_USED_SIZE_BYTES).value());

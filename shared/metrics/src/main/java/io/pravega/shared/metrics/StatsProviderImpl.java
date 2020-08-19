@@ -50,10 +50,10 @@ class StatsProviderImpl implements StatsProvider {
 
     @Synchronized
     private void init() {
-        new JvmMemoryMetrics().bindTo(metrics);
-        new JvmGcMetrics().bindTo(metrics);
-        new ProcessorMetrics().bindTo(metrics);
-        new JvmThreadMetrics().bindTo(metrics);
+//        new JvmMemoryMetrics().bindTo(metrics);
+//        new JvmGcMetrics().bindTo(metrics);
+//        new ProcessorMetrics().bindTo(metrics);
+//        new JvmThreadMetrics().bindTo(metrics);
     }
 
     @Synchronized
