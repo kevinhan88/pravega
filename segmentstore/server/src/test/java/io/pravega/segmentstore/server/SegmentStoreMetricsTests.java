@@ -175,7 +175,6 @@ public class SegmentStoreMetricsTests {
         SegmentStoreMetrics.CacheManager cache = new SegmentStoreMetrics.CacheManager();
         cache.report(new CacheState(storedBytes, usedBytes, 0, allocatedBytes, storedBytes), generationSpread, managerIterationDuration);
 
-
         assertEquals(storedBytes, (int) MetricRegistryUtils.getGauge(MetricsNames.CACHE_STORED_SIZE_BYTES).value());
         assertEquals(usedBytes, (int) MetricRegistryUtils.getGauge(MetricsNames.CACHE_USED_SIZE_BYTES).value());
         assertEquals(allocatedBytes, (int) MetricRegistryUtils.getGauge(MetricsNames.CACHE_ALLOC_SIZE_BYTES).value());
