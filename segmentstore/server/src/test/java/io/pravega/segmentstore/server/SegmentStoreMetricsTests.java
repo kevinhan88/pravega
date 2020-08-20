@@ -160,7 +160,7 @@ public class SegmentStoreMetricsTests {
     }
 
     @Test
-    public void testCacheManagerMetrics() {
+    public void testCacheManagerMetrics() throws Exception {
         int storedBytes = 10000;
         int usedBytes = 1000;
         int allocatedBytes = 100;
@@ -173,6 +173,7 @@ public class SegmentStoreMetricsTests {
         SegmentStoreMetrics.CacheManager cache = new SegmentStoreMetrics.CacheManager();
         cache.report(new CacheState(storedBytes, usedBytes, 0, allocatedBytes, storedBytes), generationSpread, managerIterationDuration);
 
+        Thread.sleep(1000);
         assertEquals(storedBytes, (int) MetricRegistryUtils.getGauge(MetricsNames.CACHE_STORED_SIZE_BYTES).value());
         assertEquals(usedBytes, (int) MetricRegistryUtils.getGauge(MetricsNames.CACHE_USED_SIZE_BYTES).value());
         assertEquals(allocatedBytes, (int) MetricRegistryUtils.getGauge(MetricsNames.CACHE_ALLOC_SIZE_BYTES).value());
@@ -180,6 +181,7 @@ public class SegmentStoreMetricsTests {
         assertEquals(managerIterationDuration, (int) MetricRegistryUtils.getTimer(MetricsNames.CACHE_MANAGER_ITERATION_DURATION).mean(TimeUnit.MILLISECONDS));
 
         cache.close();
+        Thread.sleep(1000);
 
         assertNull(MetricRegistryUtils.getGauge(MetricsNames.CACHE_STORED_SIZE_BYTES));
         assertNull(MetricRegistryUtils.getGauge(MetricsNames.CACHE_USED_SIZE_BYTES));
