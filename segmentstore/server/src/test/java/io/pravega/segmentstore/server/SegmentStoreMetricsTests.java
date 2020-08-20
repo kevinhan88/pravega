@@ -9,7 +9,6 @@
  */
 package io.pravega.segmentstore.server;
 
-import io.micrometer.core.instrument.Metrics;
 import io.pravega.segmentstore.storage.cache.CacheState;
 import io.pravega.shared.MetricsNames;
 import io.pravega.shared.metrics.MetricRegistryUtils;
