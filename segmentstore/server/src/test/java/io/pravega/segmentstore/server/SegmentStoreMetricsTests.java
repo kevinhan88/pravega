@@ -169,7 +169,6 @@ public class SegmentStoreMetricsTests {
         int managerIterationDuration = 1;
 
         int containerId = new Random().nextInt(Integer.MAX_VALUE);
-        Metrics.globalRegistry.clear();
 
         @Cleanup
         SegmentStoreMetrics.CacheManager cache = new SegmentStoreMetrics.CacheManager();
